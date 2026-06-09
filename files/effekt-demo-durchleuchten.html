@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Demo · Scroll-Durchleucht-Effekt</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,400;0,500;0,600;0,700;1,600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --green:#0f6e59; --sand:#c2ab8f; --cream:#eee9e5; --ink:#333333;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:"Figtree",sans-serif;background:var(--cream);color:var(--ink)}
+  .spacer{height:90vh;display:grid;place-items:center;text-align:center;padding:0 24px}
+  .spacer p{max-width:46ch;color:#6a6a64;font-size:18px;line-height:1.6}
+  .spacer .hint{margin-top:14px;font-size:14px;color:var(--green);font-weight:600}
+
+  /* Bühne: hoch, damit Scroll-Weg für den Effekt da ist */
+  .stage-wrap{height:260vh;position:relative}
+  .stage{position:sticky;top:0;height:100vh;display:grid;place-items:center;overflow:hidden}
+
+  .frame{
+    position:relative;width:min(1100px,92vw);height:min(620px,78vh);
+    border-radius:18px;overflow:hidden;background:var(--cream);
+    box-shadow:0 30px 70px -40px rgba(15,110,89,.5);
+  }
+
+  /* Ebene 1: Basis (Graustufe) – Platzhalter aus Mustern */
+  .layer{position:absolute;inset:0}
+  .layer-base{
+    background:
+      repeating-linear-gradient(115deg, rgba(0,0,0,.05) 0 2px, transparent 2px 26px),
+      linear-gradient(135deg,#d9d9d6,#9a9a96 60%,#bcbcb8);
+    filter:grayscale(1);
+    display:grid;place-items:center;
+  }
+  .layer-base .tag{color:#5c5c58}
+
+  /* Ebene 2: Reveal (Markenfarbe) – wird per clip-path sichtbar */
+  .layer-reveal{
+    background:
+      repeating-linear-gradient(115deg, rgba(255,255,255,.18) 0 2px, transparent 2px 26px),
+      linear-gradient(135deg, #15937a, #0f6e59 55%, #0b4f41);
+    display:grid;place-items:center;
+    /* Start: nur ein dünner diagonaler Streifen sichtbar */
+    clip-path: polygon(64% 0%, 66% 0%, 52% 100%, 50% 100%);
+  }
+  .layer-reveal .tag{color:#dff3ee}
+  .tag{
+    font-weight:700;letter-spacing:.04em;font-size:14px;text-transform:uppercase;
+    border:1px solid currentColor;padding:7px 13px;border-radius:999px;opacity:.8;
+  }
+
+  /* Scan-Kante: gestrichelte + solide Linie, wandert mit */
+  .scanline{
+    position:absolute;top:50%;left:0;width:150%;height:0;
+    border-top:2px solid var(--green);
+    transform-origin:center;
+    transform:translate(-25%,-50%) rotate(58deg);
+    pointer-events:none;
+  }
+  .scanline::before{
+    content:"";position:absolute;left:0;right:40%;top:-2px;height:0;
+    border-top:2px dashed rgba(15,110,89,.6);
+  }
+
+  /* Text-Overlay wie im Original (Titel + Claim) */
+  .overlay{position:absolute;left:7%;top:50%;transform:translateY(-50%);max-width:34%;z-index:3}
+  .overlay h3{font-style:italic;color:var(--green);font-size:15px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:16px}
+  .overlay p{color:var(--ink);font-size:clamp(20px,2.4vw,30px);font-weight:600;line-height:1.18}
+
+  .label{position:absolute;bottom:14px;right:16px;font-size:12px;color:#fff;background:rgba(15,110,89,.85);padding:5px 10px;border-radius:6px;z-index:4}
+
+  @media (prefers-reduced-motion: reduce){
+    .layer-reveal{clip-path:polygon(78% 0%, 100% 0%, 70% 100%, 44% 100%) !important}
+  }
+</style>
+</head>
+<body>
+
+  <div class="spacer">
+    <div>
+      <p>Scrolle nach unten. Sobald die Bühne den Bildschirm füllt, „durchleuchtet" sich das Bild diagonal beim Weiterscrollen.</p>
+      <div class="hint">↓ weiterscrollen</div>
+    </div>
+  </div>
+
+  <div class="stage-wrap" id="wrap">
+    <div class="stage">
+      <div class="frame">
+        <div class="layer layer-base"><span class="tag">Basis · Graustufe</span></div>
+        <div class="layer layer-reveal" id="reveal"><span class="tag">Reveal · Markenfarbe</span></div>
+        <div class="scanline" id="scan"></div>
+        <div class="overlay">
+          <h3>Beispiel-Titel</h3>
+          <p>Hier steht ein kurzer Claim, der beim Aufdecken stehen bleibt.</p>
+        </div>
+        <div class="label">Platzhalter – echte Bilder ersetzen die beiden Ebenen</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="spacer"><p>Ende der Demo. Der Effekt eignet sich als einzelner „Moment" auf der Seite – sparsam einsetzen, nicht in jeder Sektion.</p></div>
+
+<script>
+  const wrap = document.getElementById('wrap');
+  const reveal = document.getElementById('reveal');
+  const scan = document.getElementById('scan');
+
+  function clamp(v,a,b){return Math.max(a,Math.min(b,v))}
+
+  function update(){
+    const r = wrap.getBoundingClientRect();
+    const total = r.height - window.innerHeight;      // Scroll-Weg innerhalb der Bühne
+    const p = clamp((-r.top) / total, 0, 1);          // 0..1 Fortschritt
+
+    // Keil wächst mit p: oben schmaler, unten breiter (diagonal)
+    const midTop = 65, midBot = 51;
+    const halfTop = p * 26;   // halbe Breite oben
+    const halfBot = p * 40;   // halbe Breite unten
+    const x1 = midTop - halfTop, x2 = midTop + halfTop;
+    const x3 = midBot + halfBot, x4 = midBot - halfBot;
+    reveal.style.clipPath =
+      `polygon(${x1}% 0%, ${x2}% 0%, ${x3}% 100%, ${x4}% 100%)`;
+
+    // Scan-Kante wandert mit der vorderen (rechten) Keilkante
+    const lead = (x2 + x3) / 2;          // grobe Mitte der führenden Kante
+    scan.style.left = (lead - 75) + '%';
+    scan.style.opacity = p > 0.02 && p < 0.99 ? 1 : 0;
+  }
+
+  if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+    let ticking=false;
+    window.addEventListener('scroll',()=>{
+      if(!ticking){requestAnimationFrame(()=>{update();ticking=false});ticking=true}
+    },{passive:true});
+    window.addEventListener('resize',update);
+    update();
+  }
+</script>
+</body>
+</html>

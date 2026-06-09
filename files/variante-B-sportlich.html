@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>[PRAXISNAME] – Variante B · Sportlich &amp; dynamisch</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#101311; --surface:#181C19; --surface2:#1F241F; --ink:#F1F4EE;
+    --accent:#C7F035; --accent-deep:#A6CC22; --muted:#9AA39A; --line:#2A302A; --maxw:1120px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:"Manrope",sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased}
+  h1,h2,h3{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;line-height:.98;letter-spacing:-.02em}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 26px}
+  a{color:inherit;text-decoration:none}
+  header{position:sticky;top:0;z-index:50;background:rgba(16,19,17,.8);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:74px}
+  .brand{display:flex;align-items:center;gap:12px;font-weight:700;font-family:"Bricolage Grotesque",sans-serif}
+  .logo-mark{width:40px;height:40px;border-radius:11px;background:var(--accent);color:#101311;display:grid;place-items:center;font-size:20px;font-weight:800;transform:rotate(-4deg)}
+  .brand small{display:block;font-weight:600;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);font-family:"Manrope",sans-serif}
+  .nav-links{display:flex;gap:30px;align-items:center}
+  .nav-links a{font-size:15px;color:var(--muted);font-weight:600;transition:color .2s}
+  .nav-links a:hover{color:var(--ink)}
+  .btn{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:#101311;padding:12px 22px;border-radius:8px;font-weight:700;font-size:15px;transition:transform .15s,background .2s;font-family:"Manrope",sans-serif}
+  .btn:hover{background:var(--accent-deep);transform:translateY(-2px)}
+  .btn-ghost{background:transparent;color:var(--ink);border:1.5px solid var(--line)}
+  .btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
+  .menu-toggle{display:none;background:none;border:none;cursor:pointer;font-size:24px;color:var(--ink)}
+  .hero{padding:90px 0 80px;position:relative;overflow:hidden}
+  .hero::after{content:"";position:absolute;right:-160px;top:-120px;width:520px;height:520px;background:radial-gradient(circle,rgba(199,240,53,.16),transparent 65%);pointer-events:none}
+  .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:54px;align-items:center;position:relative}
+  .eyebrow{display:inline-flex;align-items:center;gap:9px;font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:22px}
+  .eyebrow::before{content:"";width:30px;height:2px;background:var(--accent)}
+  .hero h1{font-size:clamp(46px,7vw,86px);text-transform:uppercase;margin-bottom:24px}
+  .hero h1 span{color:var(--accent)}
+  .hero p.lead{font-size:19px;color:var(--muted);max-width:34ch;margin-bottom:34px}
+  .hero-cta{display:flex;gap:14px;flex-wrap:wrap}
+  .hero-meta{display:flex;gap:14px;margin-top:46px}
+  .hero-meta .m{flex:1;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px}
+  .hero-meta .num{font-family:"Bricolage Grotesque",sans-serif;font-size:30px;color:var(--accent);display:block;line-height:1}
+  .hero-meta .lbl{font-size:12px;color:var(--muted);margin-top:6px;text-transform:uppercase;letter-spacing:.05em}
+  .hero-photo{position:relative;aspect-ratio:4/5;border-radius:18px;overflow:hidden;background:linear-gradient(155deg,#2b3329,#13160f);border:1px solid var(--line);display:grid;place-items:center;color:#aeb6a6;text-align:center;padding:26px}
+  .hero-photo .ph-icon{font-size:44px;margin-bottom:14px}
+  .hero-photo .ph-note{font-size:14px;max-width:22ch}
+  .hero-badge{position:absolute;left:18px;bottom:18px;right:18px;background:var(--accent);color:#101311;border-radius:12px;padding:14px 16px;display:flex;align-items:center;gap:10px;font-weight:700}
+  .hero-badge .pulse{width:9px;height:9px;border-radius:50%;background:#101311}
+  .hero-badge span{font-weight:600;font-size:13px}
+  section{padding:90px 0}
+  .sec-head{max-width:620px;margin-bottom:50px}
+  .sec-head h2{font-size:clamp(34px,5vw,56px);text-transform:uppercase}
+  .sec-head p{color:var(--muted);margin-top:16px;font-size:17px}
+  .about-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:54px;align-items:center}
+  .about-photo{aspect-ratio:1/1;border-radius:18px;background:var(--surface2);border:1px solid var(--line);display:grid;place-items:center;color:var(--accent);text-align:center;padding:20px}
+  .about-photo .ph-icon{font-size:40px;margin-bottom:10px}.about-photo small{color:var(--muted)}
+  .about-text h3{font-size:34px;text-transform:uppercase;margin-bottom:6px}
+  .about-text .role{color:var(--accent);font-weight:700;margin-bottom:18px;display:block;text-transform:uppercase;font-size:14px;letter-spacing:.05em}
+  .about-text p{color:var(--muted);margin-bottom:15px}
+  .quali{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
+  .quali span{background:var(--surface);border:1px solid var(--line);padding:8px 15px;border-radius:8px;font-size:14px;font-weight:600}
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:30px 26px;transition:transform .2s,border-color .2s}
+  .card:hover{transform:translateY(-5px);border-color:var(--accent)}
+  .card .ic{width:50px;height:50px;border-radius:11px;background:var(--surface2);color:var(--accent);display:grid;place-items:center;font-size:23px;margin-bottom:18px}
+  .card h3{font-size:21px;margin-bottom:8px;text-transform:uppercase}
+  .card p{color:var(--muted);font-size:15px}
+  .steps{background:var(--accent);color:#101311}
+  .steps .eyebrow{color:#101311}.steps .eyebrow::before{background:#101311}
+  .steps h2{color:#101311}.steps .sec-head p{color:#2c3414}
+  .step-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .step{border-top:3px solid #101311;padding-top:18px}
+  .step .n{font-family:"Bricolage Grotesque",sans-serif;font-size:54px;line-height:1}
+  .step h3{font-size:22px;margin:8px 0;text-transform:uppercase}
+  .step p{color:#2c3414;font-size:15px;font-weight:500}
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+  .info-row{display:flex;gap:16px;padding:20px 0;border-bottom:1px solid var(--line)}
+  .info-row:last-child{border-bottom:none}
+  .info-row .ic{width:44px;height:44px;flex:none;border-radius:10px;background:var(--surface2);color:var(--accent);display:grid;place-items:center;font-size:18px}
+  .info-row b{display:block;font-size:16px;margin-bottom:2px}
+  .info-row span,.info-row a{color:var(--muted);font-size:15px}
+  .info-row a:hover{color:var(--accent)}
+  .map-box{aspect-ratio:4/3;border-radius:14px;overflow:hidden;border:1px solid var(--line);background:var(--surface);display:grid;place-items:center;color:var(--muted);text-align:center;padding:20px}
+  .contact-cta{margin-top:26px;display:flex;gap:14px;flex-wrap:wrap}
+  footer{background:#0A0C0A;color:#8b948a;padding:52px 0 30px;border-top:1px solid var(--line)}
+  .foot-top{display:flex;justify-content:space-between;flex-wrap:wrap;gap:24px;align-items:center;padding-bottom:28px;border-bottom:1px solid var(--line)}
+  .foot-brand{display:flex;align-items:center;gap:12px;color:#fff;font-family:"Bricolage Grotesque",sans-serif;font-weight:800}
+  .foot-links{display:flex;gap:24px;font-size:14px}.foot-links a:hover{color:var(--accent)}
+  .foot-bottom{padding-top:22px;font-size:13px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+  .reveal{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease}
+  .reveal.in{opacity:1;transform:none}
+  @media(max-width:860px){.hero-grid,.about-grid,.contact-grid{grid-template-columns:1fr;gap:40px}.cards,.step-grid{grid-template-columns:1fr}.nav-links{display:none}.menu-toggle{display:block}.hero-photo{aspect-ratio:4/3;max-width:440px}.hero{padding:56px 0}}
+</style>
+</head>
+<body>
+<header><div class="wrap nav">
+  <a href="#top" class="brand"><span class="logo-mark">P</span><span>[PRAXISNAME]<small>Sport &amp; Reha</small></span></a>
+  <nav class="nav-links"><a href="#about">Über</a><a href="#leistungen">Leistungen</a><a href="#ablauf">Ablauf</a><a href="#kontakt">Kontakt</a><a href="#kontakt" class="btn">Termin anfragen</a></nav>
+  <button class="menu-toggle">☰</button>
+</div></header>
+
+<a id="top"></a>
+<section class="hero"><div class="wrap hero-grid">
+  <div class="reveal">
+    <span class="eyebrow">Physiotherapie · Sport &amp; Reha</span>
+    <h1>Stärker<br><span>zurück.</span></h1>
+    <p class="lead">Sport- und Rehatherapie, die dich zurück an deine Belastungsgrenze bringt – und darüber hinaus. In [ORT].</p>
+    <div class="hero-cta"><a href="#kontakt" class="btn">Termin anfragen →</a><a href="#leistungen" class="btn btn-ghost">Leistungen</a></div>
+    <div class="hero-meta">
+      <div class="m"><span class="num">[XX]</span><span class="lbl">Jahre Erfahrung</span></div>
+      <div class="m"><span class="num">[XXX]+</span><span class="lbl">Patient:innen</span></div>
+      <div class="m"><span class="num">★ [X,X]</span><span class="lbl">Bewertung</span></div>
+    </div>
+  </div>
+  <div class="hero-photo reveal">
+    <div><div class="ph-icon">📷</div><div class="ph-note">Platzhalter: dynamisches Bewegungs-/Trainingsfoto</div></div>
+    <div class="hero-badge"><span class="pulse"></span><span>Termine frei · Mo–Fr nach Vereinbarung</span></div>
+  </div>
+</div></section>
+
+<section id="about"><div class="wrap about-grid">
+  <div class="about-photo reveal"><div><div class="ph-icon">👤</div><small>Platzhalter: Portraitfoto</small></div></div>
+  <div class="about-text reveal">
+    <span class="eyebrow">Dein Therapeut</span>
+    <h3>[Vor- &amp; Nachname]</h3>
+    <span class="role">Physiotherapeut · Sport &amp; Reha</span>
+    <p>[Persönlicher Text: Wer bist du, was treibt dich an? 2–4 Sätze – nahbar und klar. Bei sportlicher Zielgruppe darf der Ton zupackend sein.]</p>
+    <p>[Optional: ein Satz zur Philosophie, z. B. „Mein Ziel: dass du nicht nur schmerzfrei bist, sondern belastbarer als vorher."]</p>
+    <div class="quali"><span>Manuelle Therapie</span><span>KG am Gerät</span><span>Sportphysiotherapie</span><span>Lymphdrainage</span><span>[weitere]</span></div>
+  </div>
+</div></section>
+
+<section id="leistungen"><div class="wrap">
+  <div class="sec-head reveal"><span class="eyebrow">Behandlung</span><h2>Leistungen</h2><p>[Kurzer Einleitungssatz: für wen und bei welchen Beschwerden.]</p></div>
+  <div class="cards">
+    <div class="card reveal"><div class="ic">🏃</div><h3>Sportphysio</h3><p>Behandlung von Sportverletzungen und gezielter Wiederaufbau bis zur vollen Belastbarkeit.</p></div>
+    <div class="card reveal"><div class="ic">🩹</div><h3>Reha nach OP</h3><p>Strukturierter Rehaplan für die sichere Rückkehr in Alltag und Sport.</p></div>
+    <div class="card reveal"><div class="ic">✋</div><h3>Manuelle Therapie</h3><p>Gezielte Mobilisation von Gelenken und Muskulatur zur Schmerzlinderung.</p></div>
+    <div class="card reveal"><div class="ic">🏋️</div><h3>KG am Gerät</h3><p>Aufbau von Kraft und Stabilität an medizinischen Trainingsgeräten.</p></div>
+    <div class="card reveal"><div class="ic">💧</div><h3>Lymphdrainage</h3><p>Sanfte Technik zur Entstauung nach Operationen oder bei Schwellungen.</p></div>
+    <div class="card reveal"><div class="ic">🎯</div><h3>[Weitere]</h3><p>[Kurzbeschreibung – z. B. Faszientherapie, Taping, Prävention.]</p></div>
+  </div>
+</div></section>
+
+<section class="steps" id="ablauf"><div class="wrap">
+  <div class="sec-head reveal"><span class="eyebrow">So läuft es ab</span><h2>Dein Weg</h2><p>Vom ersten Kontakt bis zurück auf den Platz.</p></div>
+  <div class="step-grid">
+    <div class="step reveal"><div class="n">01</div><h3>Anfragen</h3><p>Ruf an oder schreib kurz. Wir finden gemeinsam einen Termin.</p></div>
+    <div class="step reveal"><div class="n">02</div><h3>Befund &amp; Ziel</h3><p>Wir analysieren die Beschwerden und setzen ein klares Ziel.</p></div>
+    <div class="step reveal"><div class="n">03</div><h3>Durchstarten</h3><p>Individuelle Therapie plus Übungen für zu Hause.</p></div>
+  </div>
+</div></section>
+
+<section id="kontakt"><div class="wrap">
+  <div class="sec-head reveal"><span class="eyebrow">Kontakt</span><h2>Termin &amp; Anfahrt</h2><p>Am schnellsten geht's telefonisch.</p></div>
+  <div class="contact-grid">
+    <div class="reveal">
+      <div class="info-row"><div class="ic">📞</div><div><b>Telefon</b><a href="tel:[TELEFONNUMMER]">[Telefonnummer]</a></div></div>
+      <div class="info-row"><div class="ic">✉️</div><div><b>E-Mail</b><a href="mailto:[EMAIL]">[E-Mail-Adresse]</a></div></div>
+      <div class="info-row"><div class="ic">📍</div><div><b>Adresse</b><span>[Straße Hausnummer]<br>[PLZ Ort]</span></div></div>
+      <div class="info-row"><div class="ic">🕐</div><div><b>Öffnungszeiten</b><span>Mo–Fr: [XX–XX Uhr]<br>Termine nach Vereinbarung</span></div></div>
+      <div class="contact-cta"><a href="tel:[TELEFONNUMMER]" class="btn">Jetzt anrufen</a><a href="mailto:[EMAIL]" class="btn btn-ghost">E-Mail schreiben</a></div>
+    </div>
+    <div class="map-box reveal"><div><div style="font-size:30px;margin-bottom:8px">🗺️</div>Platzhalter: Google-Maps-Karte<br><small>(datenschutzkonform mit Klick-Freigabe)</small></div></div>
+  </div>
+</div></section>
+
+<footer><div class="wrap">
+  <div class="foot-top"><div class="foot-brand"><span class="logo-mark">P</span><span>[PRAXISNAME]</span></div><div class="foot-links"><a href="#impressum">Impressum</a><a href="#datenschutz">Datenschutz</a><a href="#kontakt">Kontakt</a></div></div>
+  <div class="foot-bottom"><span>© <span id="yr"></span> [PRAXISNAME] · Physiotherapie</span><span>Variante B · Sportlich &amp; dynamisch</span></div>
+</div></footer>
+<script>
+  document.getElementById('yr').textContent=new Date().getFullYear();
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+  document.querySelectorAll('.reveal').forEach((el,i)=>{el.style.transitionDelay=(i%3*.08)+'s';io.observe(el)});
+</script>
+</body>
+</html>

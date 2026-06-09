@@ -1,0 +1,16 @@
+# Verifikations-Screenshots (Arbeitsartefakte, kein Teil der Website)
+screenshots/
+
+# temporäre Verify-/Test-Dateien
+_verify.html
+_xray-verify.html
+_pintest.html
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Python
+__pycache__/
+*.pyc
