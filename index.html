@@ -17,32 +17,42 @@
 <script src="assets/main.js" defer></script>
 </head>
 <body>
-<header><div class="wrap nav">
-  <a href="#top" class="brand" aria-label="Physiotherapie Martin Krebber – Startseite"><img src="assets/logo.svg" alt="Physiotherapie Martin Krebber – Privatpraxis" class="logo-full"></a>
-  <nav class="nav-links" id="nav-links"><a href="#about">Über mich</a><a href="#leistungen">Leistungen</a><a href="#ablauf">Ablauf</a><a href="#kontakt">Kontakt</a><a href="#kontakt" class="btn">Termin anfragen</a></nav>
-  <button class="menu-toggle" aria-label="Menü öffnen" aria-expanded="false" aria-controls="nav-links"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M4 5h16" /> <path d="M4 12h16" /> <path d="M4 19h16" /> </svg></button>
-</div></header>
-
 <a id="top"></a>
-<section class="hero" aria-label="Mit Ruhe zurück in Bewegung">
-  <div class="hero-sticky">
-    <div class="hero-layer hero-base"></div>
-    <div class="hero-layer hero-reveal"></div>
-    <svg class="xray-edge hero-edge" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
-      <line class="edge-dash" x1="50" y1="0" x2="50" y2="100"></line>
-      <line class="edge-solid" x1="50" y1="0" x2="50" y2="100"></line>
-    </svg>
-    <div class="hero-scrim"></div>
-    <div class="hero-inner">
-      <span class="eyebrow">Physiotherapie · Privatpraxis</span>
-      <h1>Mit Ruhe<br>zurück in<br><em>Bewegung</em>.</h1>
-      <p class="lead">Individuelle physiotherapeutische Behandlung in der Privatpraxis – ich nehme mir Zeit für Sie und Ihre Genesung in Stuttgart-Bad Cannstatt.</p>
-      <div class="hero-cta"><a href="#kontakt" class="btn">Termin anfragen</a><a href="#leistungen" class="btn btn-ghost">Leistungen</a></div>
+<section class="hero" aria-label="Physiotherapie Martin Krebber">
+  <div class="hero-stage">
+    <div class="hero-media">
+      <div class="hero-img hero-base"></div>
+      <div class="hero-img hero-sharp"></div>
+      <span class="hero-scan" aria-hidden="true"></span>
     </div>
-    <div class="hero-note">Platzhalter – echtes Praxis-/Bewegungsfoto folgt</div>
-    <div class="hero-hint" aria-hidden="true">Scrollen</div>
+    <div class="hero-scrim"></div>
+
+    <div class="hero-center">
+      <h1>Martin.<wbr><em>Krebber</em></h1>
+      <span class="eyebrow">Physiotherapie · Privatpraxis</span>
+    </div>
+
+    <a class="h-corner h-faq" href="#about">
+      <span class="h-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14"/><path d="M5 12l7 7 7-7"/></svg></span>
+      <span class="h-label">Allgemeine Info</span>
+    </a>
+
+    <span class="hero-hint" aria-hidden="true">Scrollen</span>
   </div>
 </section>
+
+<!-- Persistente Eck-Steuerung -->
+<a class="h-logo" href="#top" aria-label="Physiotherapie Martin Krebber – Startseite"><img src="assets/logo-mark.svg" alt="Physiotherapie Martin Krebber"></a>
+<button class="h-menu" id="hMenu" aria-label="Menü öffnen" aria-expanded="false"><span class="h-menu-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16"/><path d="M4 12h16"/><path d="M4 18h16"/></svg></span></button>
+<a class="h-contact" href="#kontakt" aria-label="Kontakt aufnehmen"><span class="h-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.16 6.16z"/></svg></span></a>
+
+<nav class="menu-overlay" id="menuOverlay" aria-hidden="true">
+  <button class="menu-close" id="menuClose" aria-label="Menü schließen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="M6 6l12 12"/></svg></button>
+  <a href="#about">Über mich</a>
+  <a href="#leistungen">Leistungen</a>
+  <a href="#ablauf">Ablauf</a>
+  <a href="#kontakt">Kontakt</a>
+</nav>
 
 <section class="about" id="about"><div class="wrap about-grid">
   <div class="about-photo reveal"><img src="assets/images/scrubs-cut.png" alt="Martin Krebber, Physiotherapeut – Privatpraxis" class="about-img" width="480" height="625"></div>
@@ -70,23 +80,32 @@
 <section class="steps" id="ablauf"><div class="wrap">
   <div class="sec-head reveal"><span class="eyebrow">So läuft es ab</span><h2>Ihr Weg zu mir</h2><p>Damit Sie wissen, was Sie erwartet.</p></div>
   <div class="step-grid">
-    <div class="step reveal"><div class="n">01</div><h3>Termin anfragen</h3><p>Rufen Sie an oder schreiben Sie kurz. Wir finden gemeinsam einen Termin.</p></div>
-    <div class="step reveal"><div class="n">02</div><h3>Befund &amp; Ziel</h3><p>Wir schauen uns Ihre Beschwerden genau an und legen ein klares Ziel fest.</p></div>
-    <div class="step reveal"><div class="n">03</div><h3>Behandlung</h3><p>Individuelle Therapie – mit Übungen, die Sie auch zu Hause weiterbringen.</p></div>
+    <div class="step reveal"><div class="step-stone s1"><div class="step-stone-inner"><svg class="stone-echo" viewBox="0 0 86.98 84.54" fill="currentColor" aria-hidden="true"><path d="M79.56,64.65 C61.97,78.02 40.44,84.54 18.98,83.73 C12.80,83.50 7.49,79.32 5.81,73.36 C0.00,52.68 1.30,30.23 10.17,10.00 C12.97,3.60 19.96,0.00 26.69,1.88 C38.32,5.13 49.52,10.70 59.59,18.63 C69.66,26.56 77.69,36.14 83.58,46.69 C86.98,52.79 85.12,60.43 79.56,64.65 Z"/></svg><svg class="stone-main" viewBox="0 0 86.98 84.54" fill="currentColor" aria-hidden="true"><path d="M79.56,64.65 C61.97,78.02 40.44,84.54 18.98,83.73 C12.80,83.50 7.49,79.32 5.81,73.36 C0.00,52.68 1.30,30.23 10.17,10.00 C12.97,3.60 19.96,0.00 26.69,1.88 C38.32,5.13 49.52,10.70 59.59,18.63 C69.66,26.56 77.69,36.14 83.58,46.69 C86.98,52.79 85.12,60.43 79.56,64.65 Z"/></svg></div></div><span class="step-num">Schritt 1</span><h3>Termin anfragen</h3><p>Rufen Sie an oder schreiben Sie kurz. Wir finden gemeinsam einen Termin.</p></div>
+    <div class="step reveal"><div class="step-stone s2"><div class="step-stone-inner"><svg class="stone-echo" viewBox="0 0 133.60 123.63" fill="currentColor" aria-hidden="true"><path d="M127.66,65.45 C108.87,92.74 81.25,112.14 50.29,121.06 C41.38,123.63 31.85,120.16 26.67,112.46 C8.69,85.73 0.00,53.12 3.15,20.14 C4.14,9.71 12.42,1.30 22.88,0.82 C40.98,0.00 59.54,2.67 77.61,9.25 C95.69,15.83 111.62,25.71 124.96,37.97 C132.67,45.06 133.60,56.83 127.66,65.45 Z"/></svg><svg class="stone-main" viewBox="0 0 133.60 123.63" fill="currentColor" aria-hidden="true"><path d="M127.66,65.45 C108.87,92.74 81.25,112.14 50.29,121.06 C41.38,123.63 31.85,120.16 26.67,112.46 C8.69,85.73 0.00,53.12 3.15,20.14 C4.14,9.71 12.42,1.30 22.88,0.82 C40.98,0.00 59.54,2.67 77.61,9.25 C95.69,15.83 111.62,25.71 124.96,37.97 C132.67,45.06 133.60,56.83 127.66,65.45 Z"/></svg></div></div><span class="step-num">Schritt 2</span><h3>Befund &amp; Ziel</h3><p>Wir schauen uns Ihre Beschwerden genau an und legen ein klares Ziel fest.</p></div>
+    <div class="step reveal"><div class="step-stone s3"><div class="step-stone-inner"><svg class="stone-echo" viewBox="0 0 183.69 159.83" fill="currentColor" aria-hidden="true"><path d="M180.18,47.60 C169.08,90.36 143.33,127.25 108.60,152.55 C98.61,159.83 85.08,159.83 75.09,152.55 C40.36,127.25 14.60,90.36 3.51,47.60 C0.00,34.08 6.53,19.77 19.43,14.40 C41.73,5.11 66.20,0.00 91.85,0.00 C117.49,0.00 141.96,5.11 164.26,14.40 C177.15,19.77 183.69,34.08 180.18,47.60 Z"/></svg><svg class="stone-main" viewBox="0 0 183.69 159.83" fill="currentColor" aria-hidden="true"><path d="M180.18,47.60 C169.08,90.36 143.33,127.25 108.60,152.55 C98.61,159.83 85.08,159.83 75.09,152.55 C40.36,127.25 14.60,90.36 3.51,47.60 C0.00,34.08 6.53,19.77 19.43,14.40 C41.73,5.11 66.20,0.00 91.85,0.00 C117.49,0.00 141.96,5.11 164.26,14.40 C177.15,19.77 183.69,34.08 180.18,47.60 Z"/></svg></div></div><span class="step-num">Schritt 3</span><h3>Behandlung</h3><p>Individuelle Therapie – mit Übungen, die Sie auch zu Hause weiterbringen.</p></div>
   </div>
 </div></section>
 
 <section id="kontakt"><div class="wrap">
-  <div class="sec-head reveal"><span class="eyebrow">Kontakt</span><h2>Termin &amp; Anfahrt</h2><p>Am schnellsten erreichen Sie mich telefonisch.</p></div>
+  <div class="sec-head reveal"><span class="eyebrow">Kontakt</span><h2>Termin &amp; Anfahrt</h2><p>Am schnellsten erreichen Sie mich per WhatsApp oder Telefon.</p></div>
   <div class="contact-grid">
     <div class="reveal">
-      <div class="info-row"><div class="ic"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384" /> </svg></div><div><b>Telefon</b><a href="tel:+491758687206">+49 175 8687206</a></div></div>
-      <div class="info-row"><div class="ic"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7" /> <rect x="2" y="4" rx="2" /> </svg></div><div><b>E-Mail</b><a href="mailto:mail@physio-martinkrebber.de">mail@physio-martinkrebber.de</a></div></div>
-      <div class="info-row"><div class="ic"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0" /> <circle cx="12" cy="10" r="3" /> </svg></div><div><b>Adresse</b><span>Deckerstraße [Hausnr.]<br>70372 Stuttgart-Bad Cannstatt</span></div></div>
-      <div class="info-row"><div class="ic"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <circle cx="12" cy="12" r="10" /> <path d="M12 6v6l4 2" /> </svg></div><div><b>Öffnungszeiten</b><span>Mo–Fr: 9–17 Uhr<br>Termine nach Vereinbarung</span></div></div>
-      <div class="contact-cta"><a href="tel:+491758687206" class="btn">Jetzt anrufen</a><a href="mailto:mail@physio-martinkrebber.de" class="btn btn-ghost">E-Mail schreiben</a></div>
+      <div class="info-row"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></div><div><b>E-Mail</b><a href="mailto:mail@physio-martinkrebber.de">mail@physio-martinkrebber.de</a></div></div>
+      <div class="info-row"><div class="ic"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.149-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.999-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413"/></svg></div><div><b>WhatsApp</b><a href="https://wa.me/491712395857?text=Hallo%2C%20ich%20m%C3%B6chte%20einen%20Termin%20anfragen." target="_blank" rel="noopener">0171 2395857</a></div></div>
+      <div class="info-row"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.16 6.16z"/></svg></div><div><b>Telefon</b><a href="tel:+491712395857">0171 2395857</a></div></div>
+      <div class="info-row"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg></div><div><b>Adresse</b><span>Deckerstraße 39<br>70372 Stuttgart-Bad Cannstatt</span></div></div>
+      <div class="info-row"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div><div><b>Öffnungszeiten</b><span>Mo–Fr: 9–17 Uhr<br>Termine nach Vereinbarung</span></div></div>
+      <div class="contact-cta"><a href="https://wa.me/491712395857?text=Hallo%2C%20ich%20m%C3%B6chte%20einen%20Termin%20anfragen." target="_blank" rel="noopener" class="btn">WhatsApp schreiben</a><a href="tel:+491712395857" class="btn btn-ghost">Anrufen</a></div>
     </div>
-    <div class="map-box reveal"><div><div class="map-ic"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M14.106 5.553a2 2 0 0 0 1.788 0l3.659-1.83A1 1 0 0 1 21 4.619v12.764a1 1 0 0 1-.553.894l-4.553 2.277a2 2 0 0 1-1.788 0l-4.212-2.106a2 2 0 0 0-1.788 0l-3.659 1.83A1 1 0 0 1 3 19.381V6.618a1 1 0 0 1 .553-.894l4.553-2.277a2 2 0 0 1 1.788 0z" /> <path d="M15 5.764v15" /> <path d="M9 3.236v15" /> </svg></div>Platzhalter: Google-Maps-Karte<br><small>(datenschutzkonform mit Klick-Freigabe)</small></div></div>
+    <div class="map-box reveal">
+      <div class="map-consent" id="mapConsent">
+        <div class="map-ic"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.106 5.553a2 2 0 0 0 1.788 0l3.659-1.83A1 1 0 0 1 21 4.619v12.764a1 1 0 0 1-.553.894l-4.553 2.277a2 2 0 0 1-1.788 0l-4.212-2.106a2 2 0 0 0-1.788 0l-3.659 1.83A1 1 0 0 1 3 19.381V6.618a1 1 0 0 1 .553-.894l4.553-2.277a2 2 0 0 1 1.788 0z"/><path d="M15 5.764v15"/><path d="M9 3.236v15"/></svg></div>
+        <b>Standort auf Google Maps</b>
+        <p class="map-note">Deckerstraße 39, 70372 Stuttgart-Bad Cannstatt.<br>Beim Laden der Karte werden Daten an Google übertragen.</p>
+        <button class="btn map-load" id="mapLoad" type="button">Karte laden</button>
+        <a class="map-ext" href="https://www.google.com/maps/search/?api=1&amp;query=Deckerstra%C3%9Fe%2039%2C%2070372%20Stuttgart" target="_blank" rel="noopener">Stattdessen in Google Maps öffnen →</a>
+      </div>
+    </div>
   </div>
 </div></section>
 

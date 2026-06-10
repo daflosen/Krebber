@@ -21,6 +21,30 @@ if (hdr && mt) {
   );
 }
 
+// Menü-Overlay (medwest-Stil, persistenter Menü-Button)
+const hMenu = document.getElementById('hMenu');
+const menuOverlay = document.getElementById('menuOverlay');
+const menuClose = document.getElementById('menuClose');
+if (hMenu && menuOverlay) {
+  const openMenu = () => { menuOverlay.classList.add('open'); menuOverlay.setAttribute('aria-hidden', 'false'); hMenu.setAttribute('aria-expanded', 'true'); };
+  const closeMenu = () => { menuOverlay.classList.remove('open'); menuOverlay.setAttribute('aria-hidden', 'true'); hMenu.setAttribute('aria-expanded', 'false'); };
+  hMenu.addEventListener('click', openMenu);
+  if (menuClose) menuClose.addEventListener('click', closeMenu);
+  menuOverlay.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
+}
+
+// Google-Maps mit Klick-Freigabe (DSGVO): Karte lädt erst nach Klick
+const mapLoad = document.getElementById('mapLoad');
+if (mapLoad) {
+  mapLoad.addEventListener('click', () => {
+    const box = mapLoad.closest('.map-box');
+    if (!box) return;
+    const q = 'Deckerstra%C3%9Fe%2039%2C%2070372%20Stuttgart';
+    box.innerHTML = '<iframe title="Standort Physiotherapie Martin Krebber, Deckerstraße 39, Stuttgart" src="https://maps.google.com/maps?q=' + q + '&z=16&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>';
+  });
+}
+
 function revealAll() {
   document.querySelectorAll('.reveal').forEach(el => el.classList.add('in'));
 }
@@ -62,29 +86,34 @@ if (!reduceMotion && window.gsap && window.ScrollTrigger) {
     );
   });
 
-  // Signature: Scroll-Durchleuchten im Hero – diagonaler clip-path-Keil + mitwandernde Kante
-  const heroReveal = document.querySelector('.hero-reveal');
-  if (heroReveal) {
-    const edge = document.querySelector('.hero .xray-edge');
-    const eSolid = document.querySelector('.hero .edge-solid');
-    const eDash = document.querySelector('.hero .edge-dash');
-    if (edge) edge.style.display = 'block';
-    const midTop = 65, midBot = 50;
+  // Signature: Hero unscharf -> scharf (diagonaler clip-path-Keil, mitwandernde Petrol-Kante)
+  const heroSharp = document.querySelector('.hero-sharp');
+  if (heroSharp) {
+    const scan = document.querySelector('.hero-scan');
+    const mt = 62, mb = 46; // Bandmitte oben/unten in %
     const setWedge = p => {
-      const hT = p * 26, hB = p * 42;
-      const x1 = midTop - hT, x2 = midTop + hT, x3 = midBot + hB, x4 = midBot - hB;
-      heroReveal.style.clipPath = `polygon(${x1}% 0%, ${x2}% 0%, ${x3}% 100%, ${x4}% 100%)`;
-      if (eSolid) { eSolid.setAttribute('x1', x2); eSolid.setAttribute('x2', x3); }
-      if (eDash) { eDash.setAttribute('x1', x2 - 1.6); eDash.setAttribute('x2', x3 - 1.6); }
+      const ht = p * 30, hb = p * 42; // halbe Keilbreite oben/unten
+      const x1 = mt - ht, x2 = mt + ht, x3 = mb + hb, x4 = mb - hb;
+      heroSharp.style.clipPath = `polygon(${x1}% 0, ${x2}% 0, ${x3}% 100%, ${x4}% 100%)`;
+      if (scan) { scan.style.left = ((x2 + x3) / 2) + '%'; scan.style.opacity = (p > 0.02 && p < 0.99) ? '1' : '0'; }
     };
-    setWedge(0.14); // schmaler grüner Keil schon beim Laden
-    // KEIN Pin: Effekt spielt im ersten Stück Scroll (Grün wächst, Hero noch sichtbar),
-    // danach scrollt der Hero normal weg und die nächste Sektion folgt sauber – ohne Überlappung/Band.
+    setWedge(0.16); // beim Laden schon ein scharfer Streifen sichtbar
+    // Hero pinnen, während scharfgestellt wird; danach folgt direkt die nächste Sektion.
     ScrollTrigger.create({
-      trigger: '.hero', start: 'top top', end: '+=45%', scrub: true,
-      onUpdate: self => setWedge(0.14 + self.progress * 0.86)
+      trigger: '.hero', start: 'top top', end: '+=120%',
+      pin: true, pinSpacing: true, scrub: true,
+      onUpdate: self => setWedge(0.16 + self.progress * 0.84)
     });
   }
+
+  // "Ihr Weg zu mir": Logo-Steine bauen sich sanft pro Schritt auf (inkl. faintem Echo)
+  gsap.utils.toArray('.step-stone-inner').forEach(inner => {
+    gsap.fromTo(inner,
+      { opacity: 0, scale: 0.5, y: 20 },
+      { opacity: 1, scale: 1, y: 0, duration: 1.2, ease: 'power2.out',
+        scrollTrigger: { trigger: inner.closest('.step'), start: 'top 82%', once: true } }
+    );
+  });
 } else {
   // Kein GSAP oder reduzierte Bewegung: Inhalte ohne Animation zeigen
   revealAll();
