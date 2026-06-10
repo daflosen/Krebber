@@ -34,8 +34,8 @@ header{position:sticky;top:0;z-index:50;background:rgba(238,233,229,.85);backdro
 .hero-stage{position:absolute;inset:0;overflow:hidden}
 .hero-media{position:absolute;inset:0}
 .hero-img{position:absolute;inset:0;background:var(--hero-img) center 28%/cover no-repeat}
-.hero-base{filter:blur(13px) saturate(.78) brightness(.97);transform:scale(1.09)}
-.hero-sharp{clip-path:polygon(62% 0,62% 0,46% 100%,46% 100%)}
+.hero-base{filter:grayscale(1) blur(13px) brightness(.98);transform:scale(1.09)}
+.hero-sharp{filter:grayscale(1);clip-path:polygon(62% 0,62% 0,46% 100%,46% 100%)}
 .hero-scrim{position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(0,0,0,.32),rgba(0,0,0,.12) 32%,rgba(0,0,0,.5))}
 .hero-scan{position:absolute;top:0;bottom:0;width:2px;left:62%;background:var(--primary);box-shadow:0 0 16px rgba(15,110,89,.85);opacity:0;z-index:2}
 .hero-scan::before{content:"";position:absolute;top:0;bottom:0;left:-8px;border-left:2px dashed rgba(15,110,89,.55)}
@@ -48,12 +48,12 @@ header{position:sticky;top:0;z-index:50;background:rgba(238,233,229,.85);backdro
 .hero-hint{position:absolute;left:50%;bottom:20px;transform:translateX(-50%);z-index:3;color:rgba(255,255,255,.85);font:600 12px/1 "Figtree",sans-serif;letter-spacing:.16em;text-transform:uppercase}
 
 /* Eck-CTAs (Hero) */
-.h-corner{position:absolute;bottom:34px;z-index:3;display:flex;align-items:center;gap:14px;color:#fff;text-decoration:none}
-.h-corner .h-dot{width:64px;height:64px;border-radius:50%;background:var(--primary);display:grid;place-items:center;flex:none;box-shadow:0 12px 28px -12px rgba(0,0,0,.5);transition:transform .25s}
-.h-corner:hover .h-dot{transform:scale(1.07)}
-.h-corner .h-dot svg{width:24px;height:24px}
-.h-corner .h-label{font:600 14px "Figtree",sans-serif;letter-spacing:.08em;text-transform:uppercase;text-shadow:0 1px 8px rgba(0,0,0,.5)}
-.h-faq{left:30px}
+/* Patienten-Information (fix, unten links – persistent wie die anderen) */
+.h-faq{position:fixed;left:26px;bottom:26px;z-index:60;display:flex;align-items:center;gap:13px;text-decoration:none}
+.h-faq .h-dot{width:60px;height:60px;border-radius:50%;background:var(--primary);display:grid;place-items:center;flex:none;box-shadow:0 12px 28px -12px rgba(0,0,0,.45);transition:transform .2s,background .2s}
+.h-faq:hover .h-dot{transform:scale(1.07);background:var(--primary-deep)}
+.h-faq .h-dot svg{width:24px;height:24px;color:#fff}
+.h-faq .h-label{font:600 13px "Figtree",sans-serif;letter-spacing:.06em;text-transform:uppercase;color:#fff;background:rgba(20,28,24,.55);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);padding:9px 15px;border-radius:999px;white-space:nowrap}
 
 /* Persistente Steuerung (fixed) */
 .h-logo{position:fixed;top:24px;left:26px;z-index:60}
@@ -124,7 +124,7 @@ section{padding:112px 0}
 .info-row b{display:block;font-size:16px;margin-bottom:2px}
 .info-row span,.info-row a{color:var(--muted);font-size:15px}
 .info-row a:hover{color:var(--primary)}
-.map-box{aspect-ratio:4/3;border-radius:22px;overflow:hidden;border:1px solid var(--line);background:#dde3d8;display:grid;place-items:center;color:var(--muted);text-align:center;padding:20px}
+.map-box{position:relative;aspect-ratio:4/3;border-radius:22px;overflow:hidden;border:1px solid var(--line);background:#e7e5e1;display:grid;place-items:center;color:var(--muted);text-align:center;padding:20px}
 .contact-cta{margin-top:26px;display:flex;gap:14px;flex-wrap:wrap}
 footer{background:var(--ink);color:#b4bab1;padding:52px 0 30px}
 .foot-top{display:flex;justify-content:space-between;flex-wrap:wrap;gap:24px;align-items:center;padding-bottom:28px;border-bottom:1px solid rgba(255,255,255,.1)}
@@ -152,6 +152,18 @@ footer{background:var(--ink);color:#b4bab1;padding:52px 0 30px}
 .legal .note{background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--primary);border-radius:10px;padding:16px 18px;margin:28px 0}
 .legal .note p{margin:0;font-size:15px}
 .ph{background:#FBEFD2;border:1px dashed #C9A24B;color:#6F5310;padding:1px 7px;border-radius:5px;font-size:.95em;font-weight:600}
+/* FAQ-Accordion (Patienten-Information) */
+.faq{max-width:780px;margin-top:8px}
+.faq-item{border-bottom:1px solid var(--line)}
+.faq-item summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:18px;padding:20px 0;font:600 clamp(17px,2vw,20px)/1.35 "Figtree",sans-serif;color:var(--ink)}
+.faq-item summary::-webkit-details-marker{display:none}
+.faq-item summary:hover{color:var(--primary)}
+.faq-icn{flex:none;width:28px;height:28px;border-radius:50%;border:1.5px solid var(--primary);color:var(--primary);display:grid;place-items:center;font-size:20px;line-height:1;font-weight:400;transition:transform .25s,background .25s,color .25s}
+.faq-item[open] .faq-icn{background:var(--primary);color:#fff;transform:rotate(45deg)}
+.faq-a{padding:0 0 22px;color:var(--muted);font-size:16px;line-height:1.65;max-width:62ch}
+.faq-a p{margin-bottom:10px}
+.faq-a p:last-child{margin-bottom:0}
+.faq-a a{color:var(--primary);text-decoration:underline}
 
 /* ---- Icons (Lucide, inline SVG, erben Farbe via currentColor) ---- */
 .ic svg{width:24px;height:24px;display:block}
@@ -167,7 +179,7 @@ footer{background:var(--ink);color:#b4bab1;padding:52px 0 30px}
 .map-consent .map-note{font-size:13px;max-width:34ch;line-height:1.5}
 .map-consent .map-load{margin-top:4px;cursor:pointer}
 .map-consent .map-ext{font-size:13px;color:var(--primary);text-decoration:underline}
-.map-box iframe{position:absolute;inset:0;width:100%;height:100%;border:0;display:block}
+.map-box iframe{position:absolute;inset:0;width:100%;height:100%;border:0;display:block;filter:grayscale(1) contrast(1.04)}
 
 /* ---- Maskenkante des Durchleucht-Effekts (im Hero) ---- */
 .xray-edge{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;display:none}
@@ -197,11 +209,11 @@ html.lenis,html.lenis body{height:auto}
   .hero-grid,.about-grid,.contact-grid{grid-template-columns:1fr;gap:40px}
   .cards,.step-grid{grid-template-columns:1fr}
   .menu-toggle{display:block}
-  .h-corner .h-label{display:none}
+  .h-faq .h-label{display:none}
   .hero-center h1{font-size:clamp(24px,7vw,52px);letter-spacing:-.01em}
   .h-logo img{height:40px}
   .h-menu-btn,.menu-close{width:48px;height:48px}
-  .h-corner .h-dot,.h-contact .h-dot{width:54px;height:54px}
+  .h-faq .h-dot,.h-contact .h-dot{width:54px;height:54px}
   .h-faq{left:20px;bottom:26px}
   .h-logo{top:18px;left:18px}.h-menu{top:18px;right:18px}.h-contact{bottom:20px;right:18px}
   .nav-links{position:absolute;top:76px;left:0;right:0;flex-direction:column;align-items:stretch;gap:0;padding:8px 0 14px;background:var(--surface);border-bottom:1px solid var(--line);box-shadow:0 24px 30px -22px rgba(0,0,0,.3);display:none}
