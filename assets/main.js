@@ -34,6 +34,17 @@ if (hMenu && menuOverlay) {
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
 }
 
+// Kontakt-Widget (aufklappbar, re-automation-Stil)
+const hContact = document.getElementById('hContact');
+const hcToggle = document.getElementById('hcToggle');
+if (hContact && hcToggle) {
+  const setOpen = o => { hContact.classList.toggle('open', o); hcToggle.setAttribute('aria-expanded', o); };
+  hcToggle.addEventListener('click', e => { e.stopPropagation(); setOpen(!hContact.classList.contains('open')); });
+  hContact.querySelectorAll('.hc-item').forEach(a => a.addEventListener('click', () => setOpen(false)));
+  document.addEventListener('click', e => { if (!hContact.contains(e.target)) setOpen(false); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') setOpen(false); });
+}
+
 // Google-Maps mit Klick-Freigabe (DSGVO): Karte lädt erst nach Klick
 const mapLoad = document.getElementById('mapLoad');
 if (mapLoad) {
@@ -42,6 +53,24 @@ if (mapLoad) {
     if (!box) return;
     const q = 'Deckerstra%C3%9Fe%2039%2C%2070372%20Stuttgart';
     box.innerHTML = '<iframe title="Standort Physiotherapie Martin Krebber, Deckerstraße 39, Stuttgart" src="https://maps.google.com/maps?q=' + q + '&z=16&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>';
+  });
+}
+
+// Kontaktformular -> vorbefuellte mailto-Mail (kein Backend, keine Daten an Dritte)
+const contactForm = document.getElementById('contactForm');
+if (contactForm) {
+  contactForm.addEventListener('submit', e => {
+    e.preventDefault();
+    const d = new FormData(contactForm);
+    const name = (d.get('name') || '').toString().trim();
+    const email = (d.get('email') || '').toString().trim();
+    const msg = (d.get('msg') || '').toString().trim();
+    const subject = 'Terminanfrage über die Website';
+    const body = 'Name: ' + name + '\nE-Mail: ' + email + '\n\n' + msg;
+    window.location.href = 'mailto:mail@physio-martinkrebber.de?subject=' +
+      encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+    const hint = document.getElementById('cfHint');
+    if (hint) hint.hidden = false;
   });
 }
 
