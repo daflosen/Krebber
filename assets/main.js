@@ -89,13 +89,22 @@ if (!reduceMotion && window.gsap && window.ScrollTrigger) {
   // Signature: Hero unscharf -> scharf (diagonaler clip-path-Keil, mitwandernde Petrol-Kante)
   const heroSharp = document.querySelector('.hero-sharp');
   if (heroSharp) {
-    const scan = document.querySelector('.hero-scan');
+    const sL = document.querySelector('.hero-scan .scan-left');
+    const sR = document.querySelector('.hero-scan .scan-right');
     const mt = 62, mb = 46; // Bandmitte oben/unten in %
+    const ext = 8; // Überstand der gestrichelten Linien oben/unten (%)
+    const edge = (xTop, xBot, el) => {
+      if (!el) return;
+      const dx = (xBot - xTop) / 100; // x-Aenderung pro %-Hoehe
+      el.setAttribute('x1', (xTop - dx * ext).toFixed(2)); el.setAttribute('y1', -ext);
+      el.setAttribute('x2', (xBot + dx * ext).toFixed(2)); el.setAttribute('y2', 100 + ext);
+    };
     const setWedge = p => {
       const ht = p * 30, hb = p * 42; // halbe Keilbreite oben/unten
       const x1 = mt - ht, x2 = mt + ht, x3 = mb + hb, x4 = mb - hb;
       heroSharp.style.clipPath = `polygon(${x1}% 0, ${x2}% 0, ${x3}% 100%, ${x4}% 100%)`;
-      if (scan) { scan.style.left = ((x2 + x3) / 2) + '%'; scan.style.opacity = (p > 0.02 && p < 0.99) ? '1' : '0'; }
+      edge(x1, x4, sL); // linke Kante scharf<->unscharf
+      edge(x2, x3, sR); // rechte Kante scharf<->unscharf
     };
     setWedge(0.16); // beim Laden schon ein scharfer Streifen sichtbar
     // Hero pinnen, während scharfgestellt wird; danach folgt direkt die nächste Sektion.
@@ -106,14 +115,19 @@ if (!reduceMotion && window.gsap && window.ScrollTrigger) {
     });
   }
 
-  // "Ihr Weg zu mir": Logo-Steine bauen sich sanft pro Schritt auf (inkl. faintem Echo)
-  gsap.utils.toArray('.step-stone-inner').forEach(inner => {
-    gsap.fromTo(inner,
-      { opacity: 0, scale: 0.5, y: 20 },
-      { opacity: 1, scale: 1, y: 0, duration: 1.2, ease: 'power2.out',
-        scrollTrigger: { trigger: inner.closest('.step'), start: 'top 82%', once: true } }
+  // "Ihr Weg zu mir": Steine tauchen NACHEINANDER auf und steigen dabei auf.
+  // Da die 3 Schritte nebeneinander stehen (gleiche Hoehe), wird EIN Trigger fuer
+  // die Zeile genutzt + Stagger -> Stein 1->2->3 zeitversetzt. Hoehere Steine steigen
+  // von weiter unten (40/60/80 px) -> Effekt "es geht aufwaerts".
+  const stoneInners = gsap.utils.toArray('.step-stone-inner');
+  if (stoneInners.length) {
+    const rises = [70, 70, 70]; // Reveal: jeder Stein steigt sanft in seine Endposition
+    gsap.fromTo(stoneInners,
+      { opacity: 0, scale: 0.6, y: i => rises[i] != null ? rises[i] : 80 },
+      { opacity: 1, scale: 1, y: 0, duration: 1.15, ease: 'power3.out', stagger: 0.28,
+        scrollTrigger: { trigger: '.step-grid', start: 'top 80%', once: true } }
     );
-  });
+  }
 } else {
   // Kein GSAP oder reduzierte Bewegung: Inhalte ohne Animation zeigen
   revealAll();
