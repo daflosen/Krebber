@@ -10,10 +10,12 @@
 <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon-180.png">
 <!-- DSGVO: Schriften lokal gehostet, kein Google-CDN -->
 <link rel="stylesheet" href="assets/fonts.css">
+<link rel="stylesheet" href="assets/vendor/leaflet/leaflet.css">
 <link rel="stylesheet" href="assets/styles.css">
 <script src="assets/vendor/gsap.min.js" defer></script>
 <script src="assets/vendor/ScrollTrigger.min.js" defer></script>
 <script src="assets/vendor/lenis.min.js" defer></script>
+<script src="assets/vendor/leaflet/leaflet.js" defer></script>
 <script src="assets/main.js" defer></script>
 </head>
 <body>
@@ -65,9 +67,8 @@
     <span class="eyebrow">Wer behandelt Sie?</span>
     <h3>Martin Krebber</h3>
     <span class="role">Physiotherapeut · Privatpraxis</span>
-    <p>[Persönlicher Text: Wer sind Sie, was treibt Sie an? 2–4 ehrliche, nahbare Sätze – das schafft Vertrauen.]</p>
-    <p>[Optional: ein Satz zur Philosophie, z. B. „Ich behandle die Ursache, nicht nur das Symptom – und nehme mir die Zeit, die es braucht."]</p>
-    <div class="quali"><span>Krankengymnastik</span><span>Manuelle Therapie</span><span>Massage</span><span>Taping</span><span>Elektrotherapie</span><span>Wärme- und Kryo-Therapie</span></div>
+    <p>Mein Ziel ist einfach: Sie sollen sich wieder frei bewegen – ohne ständig an Ihre Beschwerden denken zu müssen. Seit <span class="ph">[X]</span> Jahren begleite ich Menschen genau dorthin: vom ersten Termin zurück in den Alltag, den Sport oder einfach in ein Leben ohne Schmerz.</p>
+    <p>Als Privatpraxis nehme ich mir bewusst Zeit – für eine gründliche Untersuchung, fürs Zuhören und für eine Behandlung, die wirklich zu Ihnen passt. Ich schaue auf die Ursache, nicht nur auf das Symptom, und erkläre Ihnen jeden Schritt, damit Sie verstehen, was Ihrem Körper guttut.</p>
   </div>
 </div></section>
 
@@ -119,8 +120,8 @@
     <div class="map-box map-wide reveal">
       <div class="map-consent" id="mapConsent">
         <div class="map-ic"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.106 5.553a2 2 0 0 0 1.788 0l3.659-1.83A1 1 0 0 1 21 4.619v12.764a1 1 0 0 1-.553.894l-4.553 2.277a2 2 0 0 1-1.788 0l-4.212-2.106a2 2 0 0 0-1.788 0l-3.659 1.83A1 1 0 0 1 3 19.381V6.618a1 1 0 0 1 .553-.894l4.553-2.277a2 2 0 0 1 1.788 0z"/><path d="M15 5.764v15"/><path d="M9 3.236v15"/></svg></div>
-        <b>Standort auf Google Maps</b>
-        <p class="map-note">Deckerstraße 39, 70372 Stuttgart-Bad Cannstatt.<br>Beim Laden der Karte werden Daten an Google übertragen.</p>
+        <b>Standort der Praxis</b>
+        <p class="map-note">Deckerstraße 39, 70372 Stuttgart-Bad Cannstatt.<br>Beim Laden der Karte werden Daten an OpenStreetMap übertragen.</p>
         <button class="btn map-load" id="mapLoad" type="button">Karte laden</button>
         <a class="map-ext" href="https://www.google.com/maps/search/?api=1&amp;query=Deckerstra%C3%9Fe%2039%2C%2070372%20Stuttgart" target="_blank" rel="noopener">Stattdessen in Google Maps öffnen →</a>
       </div>

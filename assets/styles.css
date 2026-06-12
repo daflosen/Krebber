@@ -155,6 +155,10 @@ section{padding:112px 0}
 .info-row a:hover{color:var(--primary)}
 .map-box{position:relative;aspect-ratio:4/3;border-radius:22px;overflow:hidden;border:1px solid var(--line);background:#e7e5e1;display:grid;place-items:center;color:var(--muted);text-align:center;padding:20px}
 .map-box.map-wide{aspect-ratio:auto;height:340px;margin-top:34px}
+.map-box.map-loaded{padding:0}
+.map-box .leaflet-map{position:absolute;inset:0;width:100%;height:100%}
+.map-box .leaflet-tile-pane{filter:grayscale(1) contrast(1.02)} /* nur Kacheln grau, Marker bleibt CI-gruen */
+.map-box .ci-pin{background:none;border:none;filter:drop-shadow(0 5px 6px rgba(0,0,0,.32))}
 .contact-cta{margin-top:26px;display:flex;gap:14px;flex-wrap:wrap}
 footer{background:var(--ink);color:#b4bab1;padding:52px 0 30px}
 .foot-top{display:flex;justify-content:space-between;flex-wrap:wrap;gap:24px;align-items:center;padding-bottom:28px;border-bottom:1px solid rgba(255,255,255,.1)}

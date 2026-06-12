@@ -45,14 +45,29 @@ if (hContact && hcToggle) {
   document.addEventListener('keydown', e => { if (e.key === 'Escape') setOpen(false); });
 }
 
-// Google-Maps mit Klick-Freigabe (DSGVO): Karte lädt erst nach Klick
+// Karte mit Klick-Freigabe (DSGVO): laedt erst nach Klick. Leaflet + OpenStreetMap, CI-gruener Marker.
 const mapLoad = document.getElementById('mapLoad');
 if (mapLoad) {
   mapLoad.addEventListener('click', () => {
     const box = mapLoad.closest('.map-box');
-    if (!box) return;
-    const q = 'Deckerstra%C3%9Fe%2039%2C%2070372%20Stuttgart';
-    box.innerHTML = '<iframe title="Standort Physiotherapie Martin Krebber, Deckerstraße 39, Stuttgart" src="https://maps.google.com/maps?q=' + q + '&z=16&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>';
+    if (!box || typeof L === 'undefined') return;
+    const lat = 48.8004814, lng = 9.2243069;
+    box.classList.add('map-loaded');
+    box.innerHTML = '<div class="leaflet-map" id="leafletMap"></div>';
+    const map = L.map('leafletMap', { scrollWheelZoom: false }).setView([lat, lng], 16);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a>'
+    }).addTo(map);
+    const pin = L.divIcon({
+      className: 'ci-pin',
+      html: '<svg width="40" height="52" viewBox="0 0 40 52" xmlns="http://www.w3.org/2000/svg"><path d="M20 0C9 0 0 9 0 20c0 14 20 32 20 32s20-18 20-32C40 9 31 0 20 0z" fill="#0F6E59"/><circle cx="20" cy="20" r="7.5" fill="#fff"/></svg>',
+      iconSize: [40, 52], iconAnchor: [20, 52], popupAnchor: [0, -46]
+    });
+    L.marker([lat, lng], { icon: pin }).addTo(map)
+      .bindPopup('<b>Physiotherapie Martin Krebber</b><br>Deckerstraße 39');
+    // Rueckweg zu Google Maps: einfach diesen Block durch die folgende Zeile ersetzen:
+    // box.innerHTML = '<iframe title="Standort" src="https://maps.google.com/maps?q=Deckerstra%C3%9Fe%2039%2C%2070372%20Stuttgart&z=16&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>';
   });
 }
 
