@@ -159,7 +159,7 @@ if (!reduceMotion && window.gsap && window.ScrollTrigger) {
     });
   }
 
-  // "Ihr Weg zu mir": Steine tauchen NACHEINANDER auf und steigen dabei auf.
+  // "Dein Weg zu mir": Steine tauchen NACHEINANDER auf und steigen dabei auf.
   // Da die 3 Schritte nebeneinander stehen (gleiche Hoehe), wird EIN Trigger fuer
   // die Zeile genutzt + Stagger -> Stein 1->2->3 zeitversetzt. Hoehere Steine steigen
   // von weiter unten (40/60/80 px) -> Effekt "es geht aufwaerts".
