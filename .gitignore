@@ -4,3 +4,9 @@ assets/images/KrebberStehend.jpg
 assets/images/KrebberStehend2.jpg
 assets/images/KrebberStehendFrei.png
 assets/images/KrebberSitzendFrei.png
+
+# Dev-Screenshots / Verifikations-Artefakte (nicht Teil der Website)
+screenshots/
+_verify.html
+_pi.html
+_logocmp.html
