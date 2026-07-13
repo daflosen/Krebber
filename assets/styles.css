@@ -93,9 +93,9 @@ section{padding:112px 0}
 .sec-head h2{font-size:clamp(36px,5.2vw,68px)}
 .sec-head p{color:var(--muted);margin-top:14px;font-size:17px}
 .about{background:var(--surface);padding-top:48px;padding-bottom:0;position:relative;overflow:visible}
-.about-grid{display:grid;grid-template-columns:1fr 1.15fr;gap:48px;align-items:end}
+.about-grid{display:grid;grid-template-columns:1fr 1.15fr;gap:80px;align-items:end}
 .about-photo{position:relative;z-index:2;min-height:520px}
-.about-img{position:absolute;left:50%;bottom:0;transform:translateX(-50%);width:98%;max-width:none;height:auto;display:block;filter:grayscale(1) sepia(.22) saturate(1.15) brightness(1.02) contrast(1.02) drop-shadow(0 30px 38px rgba(51,42,30,.26))}
+.about-img{position:absolute;left:45%;bottom:0;transform:translateX(-50%);width:96%;max-width:none;height:auto;display:block;filter:grayscale(1) sepia(.22) saturate(1.15) brightness(1.02) contrast(1.02) drop-shadow(0 30px 38px rgba(51,42,30,.26))}
 .about-photo .ph-icon{font-size:38px;margin-bottom:10px}
 .about-text h3{font-size:33px;margin-bottom:6px}
 .about-text .role{color:var(--accent-deep);font-weight:600;margin-bottom:18px;display:block}
