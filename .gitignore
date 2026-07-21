@@ -10,3 +10,6 @@ screenshots/
 _verify.html
 _pi.html
 _logocmp.html
+
+# lokales Deploy-Paket
+deploy.zip
