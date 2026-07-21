@@ -14,3 +14,8 @@ _logocmp.html
 # lokales Deploy-Paket
 deploy.zip
 deploy/
+
+# SMTP-Passwort - niemals commiten
+mail-config.php
+mailtest.php
+smtp-update.zip
